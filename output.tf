@@ -10,7 +10,7 @@ output "cluster_security_group_id" {
   value = module.eks.cluster_security_group_id
 }
 
-output "ecr_repository_url" {
-  value       = aws_ecr_repository.tech-challenge.repository_url
-  description = "URL do repositório ECR para o app"
+output "cluster_ca_certificate" {
+  value = module.eks.cluster_certificate_authority_data
 }
+
