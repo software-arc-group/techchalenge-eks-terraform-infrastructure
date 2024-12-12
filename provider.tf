@@ -26,3 +26,11 @@ data "aws_eks_cluster" "eks" {
   name = module.eks.cluster_name
   depends_on = [ module.eks ]
 }
+
+terraform {
+  backend "s3" {
+    bucket = "terraform-314676481759-us-east-1"
+    key = "terraform/states/data"
+    region = "us-east-1"
+  }
+}

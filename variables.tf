@@ -39,3 +39,7 @@ variable "min_size" {
   type        = number
   default     = 1
 }
+
+variable "lambda_name" {
+  description = "Nome da lambda de autorização do api gateway "
+}
