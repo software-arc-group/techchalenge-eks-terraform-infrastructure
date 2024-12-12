@@ -29,8 +29,8 @@ data "aws_eks_cluster" "eks" {
 
 terraform {
   backend "s3" {
-    bucket = "terraform-314676481759-us-east-1"
-    key = "terraform/states/data"
+    bucket = "aws-terraform-techchallenge"
+    key = "eks/eks"
     region = "us-east-1"
   }
 }
