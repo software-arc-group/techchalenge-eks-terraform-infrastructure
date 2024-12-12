@@ -1,6 +1,6 @@
 locals {
   openapi_file = templatefile("./openapi/apigateway.tfpl", {
-      server_url = var.server_url, 
+      server_url = module.eks.cluster_endpoint, 
       cognito_arn = aws_cognito_user_pool.pool.arn, 
       lambda_uri= data.aws_lambda_function.valida_credenciais.invoke_arn, 
       iam_arn=aws_iam_role.gateway_role.arn 
