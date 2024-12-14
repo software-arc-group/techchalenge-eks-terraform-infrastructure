@@ -8,6 +8,8 @@ locals {
   )
 }
 
+
+
 data "aws_lambda_function" "valida_credenciais" {
   function_name = var.lambda_name
 }
