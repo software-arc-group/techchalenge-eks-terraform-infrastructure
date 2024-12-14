@@ -7,7 +7,7 @@ variable "region" {
 variable "cluster_name" {
   description = "techchallenge"
   type        = string
-  default     = "techchallenge-cluster"
+  default     = "techchallenge-eks-cluster"
 }
 
 variable "node_instance_type" {
