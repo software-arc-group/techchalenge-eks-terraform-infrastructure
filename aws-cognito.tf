@@ -1,3 +1,5 @@
+data "aws_region" "current" {}
+
 locals {
   redirect_cognito_url = "http://localhost:8080" #Não pode ficar vazio
 }
@@ -42,4 +44,9 @@ resource "aws_cognito_user_pool_client" "lanchonete" {
   callback_urls =  [local.redirect_cognito_url] 
   default_redirect_uri = local.redirect_cognito_url
   supported_identity_providers         = ["COGNITO"]
+}
+
+resource "aws_cognito_user_pool_domain" "domain_login_url" {
+  domain       = data.aws_region.current+aws_cognito_user_pool.pool.id
+  user_pool_id = aws_cognito_user_pool.example.id
 }
