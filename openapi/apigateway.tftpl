@@ -77,10 +77,11 @@
           }
         },
         "x-amazon-apigateway-integration": {
-          "type": "AWS",
+          "type": "http_proxy",
           "httpMethod": "POST",
           "uri": "http://${server_url}:8080/lanchonete/order",
           "payloadFormatVersion": "1.0"
+          "passthroughBehavior" : "when_no_match",
         },
         "security": [
           {
