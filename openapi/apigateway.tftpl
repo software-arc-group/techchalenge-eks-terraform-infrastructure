@@ -1,911 +1,871 @@
-{
-  "openapi": "3.0.1",
-  "info": {
-    "title": "OpenAPI definition",
-    "version": "v0"
-  },
-  "servers": [
-    {
-      "url": "http://${server_url}:8080",
-      "description": "Generated server url"
-    }
-  ],
-  "paths": {
-    "/lanchonete/order/": {
-      "post": {
-        "tags": [
-          "order-controller"
-        ],
-        "operationId": "createOrder",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/OrderSnackRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "format": "byte"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        },
-        "x-amazon-apigateway-integration": {
-          "type": "http_proxy",
-          "httpMethod": "POST",
-          "uri": "http://${server_url}:8080/lanchonete/order",
-          "payloadFormatVersion": "1.0",
-          "passthroughBehavior" : "when_no_match"
-        },
-        "security": [
-          {
-            "lambda-auth": []
-          }
-        ]
-      },
-      "get": {
-        "tags": [
-          "order-snack-controller"
-        ],
-        "operationId": "cadastrarCliente",
-        "parameters": [
-          {
-            "name": "progress",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "enum": [
-                "RECEIVED",
-                "IN_PREPARATION",
-                "READY",
-                "FINISHED"
-              ]
-            }
-          },
-          {
-            "name": "cpf",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/OrderSnack"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        },
-        "x-amazon-apigateway-integration": {
-          "passthroughBehavior": "WHEN_NO_MATCH",
-          "requestTemplates": {
-            "application/json": "{\"statusCode\": 200}"
-          },
-          "responses": {
-            "default": {
-              "statusCode": "200"
-            }
-          },
-          "type": "MOCK"
-        },
-        "security": [
-          {
-            "lambda-auth": []
-          }
-        ]
-      }
+  {
+    "openapi": "3.0.1",
+    "info": {
+      "title": "OpenAPI definition",
+      "version": "v0"
     },
-    "/lanchonete/product/": {
-      "put": {
-        "tags": [
-          "product-controller"
-        ],
-        "operationId": "updateProduct",
-        "requestBody": {
-          "content": {
-            "application/json": {
+    "servers": [
+      {
+        "url": "http://${server_url}:8080",
+        "description": "Generated server url"
+      }
+    ],
+    "paths": {
+      "/lanchonete/order/": {
+        "post": {
+          "tags": [
+            "order-controller"
+          ],
+          "operationId": "createOrder",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderSnackRequest"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "409": {
+              "description": "Conflict",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "x-amazon-apigateway-integration": {
+            "type": "http_proxy",
+            "httpMethod": "POST",
+            "uri": "http://${server_url}:8080/lanchonete/order",
+            "payloadFormatVersion": "1.0",
+            "passthroughBehavior" : "when_no_match"
+          },
+          "security": [
+            {
+              "lambda-auth": []
+            }
+          ]
+        },
+        "get": {
+          "tags": [
+            "order-snack-controller"
+          ],
+          "operationId": "cadastrarCliente",
+          "parameters": [
+            {
+              "name": "progress",
+              "in": "query",
+              "required": false,
               "schema": {
-                "$ref": "#/components/schemas/ProductRequest"
+                "type": "string",
+                "enum": [
+                  "RECEIVED",
+                  "IN_PREPARATION",
+                  "READY",
+                  "FINISHED"
+                ]
               }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Product"
-                }
-              }
-            }
-          }
-        },
-        "x-amazon-apigateway-integration": {
-          "passthroughBehavior": "WHEN_NO_MATCH",
-          "requestTemplates": {
-            "application/json": "{\"statusCode\": 200}"
-          },
-          "responses": {
-            "default": {
-              "statusCode": "200"
-            }
-          },
-          "type": "MOCK"
-        },
-        "security": [
-          {
-            "cognito-pool": []
-          }
-        ]
-      },
-      "post": {
-        "tags": [
-          "product-controller"
-        ],
-        "operationId": "createProduct",
-        "requestBody": {
-          "content": {
-            "application/json": {
+            },
+            {
+              "name": "cpf",
+              "in": "query",
+              "required": false,
               "schema": {
-                "$ref": "#/components/schemas/ProductRequest"
+                "type": "string"
               }
             }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": {
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/OrderSnack"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "409": {
+              "description": "Conflict",
+              "content": {
+                "application/json": {
+                  "schema": {
                     "type": "string"
                   }
                 }
               }
             }
           },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
+          "x-amazon-apigateway-integration": {
+            "type": "http_proxy",
+            "httpMethod": "GET",
+            "uri": "http://${server_url}:8080/lanchonete/order",
+            "payloadFormatVersion": "1.0",
+            "passthroughBehavior" : "when_no_match"
           },
-          "409": {
-            "description": "Conflict",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
+          "security": [
+            {
+              "lambda-auth": []
             }
-          }
-        },
-        "x-amazon-apigateway-integration": {
-          "passthroughBehavior": "WHEN_NO_MATCH",
-          "requestTemplates": {
-            "application/json": "{\"statusCode\": 200}"
-          },
-          "responses": {
-            "default": {
-              "statusCode": "200"
-            }
-          },
-          "type": "MOCK"
-        },
-        "security": [
-          {
-            "cognito-pool": []
-          }
-        ]
-      }
-    },
-    "/lanchonete/payment/": {
-      "post": {
-        "tags": [
-          "payment-controller"
-        ],
-        "operationId": "updatePaymentStatus",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PaymentNotification"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        },
-        "x-amazon-apigateway-integration": {
-          "passthroughBehavior": "WHEN_NO_MATCH",
-          "requestTemplates": {
-            "application/json": "{\"statusCode\": 200}"
-          },
-          "responses": {
-            "default": {
-              "statusCode": "200"
-            }
-          },
-          "type": "MOCK"
-        },
-        "security": [
-          {
-            "cognito-pool": []
-          }
-        ]
-      }
-    },
-    "/lanchonete/customer": {
-      "get": {
-        "tags": [
-          "customer-controller"
-        ],
-        "operationId": "searchCustomerCpf",
-        "parameters": [
-          {
-            "name": "cpf",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Customer"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        },
-        "x-amazon-apigateway-integration": {
-          "passthroughBehavior": "WHEN_NO_MATCH",
-          "requestTemplates": {
-            "application/json": "{\"statusCode\": 200}"
-          },
-          "responses": {
-            "default": {
-              "statusCode": "200"
-            }
-          },
-          "type": "MOCK"
-        },
-        "security": [
-          {
-            "cognito-pool": []
-          }
-        ]
-      },
-      "post": {
-        "tags": [
-          "customer-controller"
-        ],
-        "operationId": "createCustomer",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CustomerRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        },
-        "x-amazon-apigateway-integration": {
-          "passthroughBehavior": "WHEN_NO_MATCH",
-          "requestTemplates": {
-            "application/json": "{\"statusCode\": 200}"
-          },
-          "responses": {
-            "default": {
-              "statusCode": "200"
-            }
-          },
-          "type": "MOCK"
-        },
-        "security": [
-          {
-            "lambda-auth": []
-          }
-        ]
-      }
-    },
-    "/lanchonete/category/{categoryId}": {
-      "get": {
-        "tags": [
-          "product-category-controller"
-        ],
-        "operationId": "searchCategory",
-        "parameters": [
-          {
-            "name": "categoryId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProductCategory"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        },
-        "x-amazon-apigateway-integration": {
-          "passthroughBehavior": "WHEN_NO_MATCH",
-          "requestTemplates": {
-            "application/json": "{\"statusCode\": 200}"
-          },
-          "responses": {
-            "default": {
-              "statusCode": "200"
-            }
-          },
-          "type": "MOCK"
-        },
-        "security": [
-          {
-            "lambda-auth": []
-          }
-        ]
-      }
-    },
-    "/lanchonete/product/{productId}": {
-      "delete": {
-        "tags": [
-          "product-controller"
-        ],
-        "operationId": "removeProduct",
-        "parameters": [
-          {
-            "name": "productId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Product"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        },
-        "x-amazon-apigateway-integration": {
-          "passthroughBehavior": "WHEN_NO_MATCH",
-          "requestTemplates": {
-            "application/json": "{\"statusCode\": 200}"
-          },
-          "responses": {
-            "default": {
-              "statusCode": "200"
-            }
-          },
-          "type": "MOCK"
-        },
-        "security": [
-          {
-            "cognito-pool": []
-          }
-        ]
-      }
-    }
-  },
-  "components": {
-    "securitySchemes": {
-      "cognito-pool": {
-        "type": "apiKey",
-        "name": "Authorization",
-        "in": "header",
-        "x-amazon-apigateway-authtype": "cognito_user_pools",
-        "x-amazon-apigateway-authorizer": {
-          "type": "cognito_user_pools",
-          "providerARNs": [
-            "${cognito_arn}"
           ]
         }
       },
-      "lambda-auth": {
-        "type": "apiKey",
-        "name": "Authorization",
-        "in": "header",
-        "x-amazon-apigateway-authtype": "custom",
-        "x-amazon-apigateway-authorizer": {
-          "type": "request",
-          "identitySource": "method.request.header.Authorization",
-          "authorizerUri": "${lambda_uri}",
-          "authorizerCredentials": "${iam_arn}",
-          "authorizerResultTtlInSeconds": 60
+      "/lanchonete/product/": {
+        "put": {
+          "tags": [
+            "product-controller"
+          ],
+          "operationId": "updateProduct",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductRequest"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
+              }
+            }
+          },
+          "x-amazon-apigateway-integration": {
+            "type": "http_proxy",
+            "httpMethod": "PUT",
+            "uri": "http://${server_url}:8080/lanchonete/product",
+            "payloadFormatVersion": "1.0",
+            "passthroughBehavior" : "when_no_match"
+          },
+          "security": [
+            {
+              "cognito-pool": []
+            }
+          ]
+        },
+        "post": {
+          "tags": [
+            "product-controller"
+          ],
+          "operationId": "createProduct",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductRequest"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "409": {
+              "description": "Conflict",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "x-amazon-apigateway-integration": {
+            "type": "http_proxy",
+            "httpMethod": "POST",
+            "uri": "http://${server_url}:8080/lanchonete/product",
+            "payloadFormatVersion": "1.0",
+            "passthroughBehavior" : "when_no_match"
+          },
+          "security": [
+            {
+              "cognito-pool": []
+            }
+          ]
+        }
+      },
+      "/lanchonete/payment/": {
+        "post": {
+          "tags": [
+            "payment-controller"
+          ],
+          "operationId": "updatePaymentStatus",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentNotification"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "201": {
+              "description": "Created"
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "409": {
+              "description": "Conflict",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "x-amazon-apigateway-integration": {
+            "type": "http_proxy",
+            "httpMethod": "POST",
+            "uri": "http://${server_url}:8080/lanchonete/payment",
+            "payloadFormatVersion": "1.0",
+            "passthroughBehavior" : "when_no_match"
+          },
+          "security": [
+            {
+              "cognito-pool": []
+            }
+          ]
+        }
+      },
+      "/lanchonete/customer": {
+        "get": {
+          "tags": [
+            "customer-controller"
+          ],
+          "operationId": "searchCustomerCpf",
+          "parameters": [
+            {
+              "name": "cpf",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Customer"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "409": {
+              "description": "Conflict",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "x-amazon-apigateway-integration": {
+            "type": "http_proxy",
+            "httpMethod": "GET",
+            "uri": "http://${server_url}:8080/lanchonete/customer",
+            "payloadFormatVersion": "1.0",
+            "passthroughBehavior" : "when_no_match"
+          },
+          "security": [
+            {
+              "cognito-pool": []
+            }
+          ]
+        },
+        "post": {
+          "tags": [
+            "customer-controller"
+          ],
+          "operationId": "createCustomer",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerRequest"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "409": {
+              "description": "Conflict",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "x-amazon-apigateway-integration": {
+            "type": "http_proxy",
+            "httpMethod": "POST",
+            "uri": "http://${server_url}:8080/lanchonete/customer",
+            "payloadFormatVersion": "1.0",
+            "passthroughBehavior" : "when_no_match"
+          },
+          "security": [
+            {
+              "lambda-auth": []
+            }
+          ]
+        }
+      },
+      "/lanchonete/category/{categoryId}": {
+        "get": {
+          "tags": [
+            "product-category-controller"
+          ],
+          "operationId": "searchCategory",
+          "parameters": [
+            {
+              "name": "categoryId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ProductCategory"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "409": {
+              "description": "Conflict",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "x-amazon-apigateway-integration": {
+            "type": "http_proxy",
+            "httpMethod": "GET",
+            "uri": "http://${server_url}:8080/lanchonete/category/{categoryId}",
+            "payloadFormatVersion": "1.0",
+            "passthroughBehavior" : "when_no_match"
+          },
+          "security": [
+            {
+              "lambda-auth": []
+            }
+          ]
+        }
+      },
+      "/lanchonete/product/{productId}": {
+        "delete": {
+          "tags": [
+            "product-controller"
+          ],
+          "operationId": "removeProduct",
+          "parameters": [
+            {
+              "name": "productId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "409": {
+              "description": "Conflict",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "x-amazon-apigateway-integration": {
+            "type": "http_proxy",
+            "httpMethod": "DELETE",
+            "uri": "http://${server_url}:8080/lanchonete/product/{productId}",
+            "payloadFormatVersion": "1.0",
+            "passthroughBehavior" : "when_no_match"
+          },
+          "security": [
+            {
+              "cognito-pool": []
+            }
+          ]
         }
       }
     },
-    "schemas": {
-      "Customer": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "cpf": {
-            "pattern": "\\d{11}",
-            "type": "string"
-          },
-          "email_address": {
-            "type": "string"
+    "components": {
+      "securitySchemes": {
+        "cognito-pool": {
+          "type": "apiKey",
+          "name": "Authorization",
+          "in": "header",
+          "x-amazon-apigateway-authtype": "cognito_user_pools",
+          "x-amazon-apigateway-authorizer": {
+            "type": "cognito_user_pools",
+            "providerARNs": [
+              "${cognito_arn}"
+            ]
+          }
+        },
+        "lambda-auth": {
+          "type": "apiKey",
+          "name": "Authorization",
+          "in": "header",
+          "x-amazon-apigateway-authtype": "custom",
+          "x-amazon-apigateway-authorizer": {
+            "type": "request",
+            "identitySource": "method.request.header.Authorization",
+            "authorizerUri": "${lambda_uri}",
+            "authorizerCredentials": "${iam_arn}",
+            "authorizerResultTtlInSeconds": 60
           }
         }
       },
-      "ProductRequest": {
-        "type": "object",
-        "properties": {
-          "product_id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "category_id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "name": {
-            "type": "string"
-          },
-          "price": {
-            "type": "number"
-          },
-          "description": {
-            "type": "string"
-          }
-        }
-      },
-      "OrderSnack": {
-        "type": "object",
-        "properties": {
-          "orderSnackId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "progress": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "customer": {
-            "$ref": "#/components/schemas/Customer"
-          }
-        }
-      },
-      "OrderSnackItem": {
-        "type": "object",
-        "properties": {
-          "orderSnackItemId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "orderSnack": {
-            "$ref": "#/components/schemas/OrderSnack"
-          },
-          "amount": {
-            "type": "number"
-          },
-          "product": {
-            "$ref": "#/components/schemas/Product"
-          },
-          "quantity": {
-            "minimum": 1,
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "Product": {
-        "required": [
-          "name",
-          "product_id"
-        ],
-        "type": "object",
-        "properties": {
-          "product_id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "category": {
-            "$ref": "#/components/schemas/ProductCategory"
-          },
-          "name": {
-            "type": "string"
-          },
-          "price": {
-            "type": "number"
-          },
-          "description": {
-            "type": "string"
-          },
-          "order_items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/OrderSnackItem"
+      "schemas": {
+        "Customer": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "cpf": {
+              "pattern": "\\d{11}",
+              "type": "string"
+            },
+            "email_address": {
+              "type": "string"
             }
           }
-        }
-      },
-      "ProductCategory": {
-        "type": "object",
-        "properties": {
-          "description": {
-            "type": "string"
-          },
-          "products": {
-            "type": "array",
-            "items": {
+        },
+        "ProductRequest": {
+          "type": "object",
+          "properties": {
+            "product_id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "category_id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "name": {
+              "type": "string"
+            },
+            "price": {
+              "type": "number"
+            },
+            "description": {
+              "type": "string"
+            }
+          }
+        },
+        "OrderSnack": {
+          "type": "object",
+          "properties": {
+            "orderSnackId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "progress": {
+              "type": "string"
+            },
+            "createdAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "customer": {
+              "$ref": "#/components/schemas/Customer"
+            }
+          }
+        },
+        "OrderSnackItem": {
+          "type": "object",
+          "properties": {
+            "orderSnackItemId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "orderSnack": {
+              "$ref": "#/components/schemas/OrderSnack"
+            },
+            "amount": {
+              "type": "number"
+            },
+            "product": {
               "$ref": "#/components/schemas/Product"
+            },
+            "quantity": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
             }
-          },
-          "productCategoryId": {
-            "type": "string",
-            "format": "uuid"
           }
-        }
-      },
-      "OrderItemRequest": {
-        "type": "object",
-        "properties": {
-          "product_id": {
-            "type": "string"
-          },
-          "qtd": {
-            "type": "integer",
-            "format": "int32"
+        },
+        "Product": {
+          "required": [
+            "name",
+            "product_id"
+          ],
+          "type": "object",
+          "properties": {
+            "product_id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "category": {
+              "$ref": "#/components/schemas/ProductCategory"
+            },
+            "name": {
+              "type": "string"
+            },
+            "price": {
+              "type": "number"
+            },
+            "description": {
+              "type": "string"
+            },
+            "order_items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/OrderSnackItem"
+              }
+            }
           }
-        }
-      },
-      "OrderSnackRequest": {
-        "type": "object",
-        "properties": {
-          "customer_id": {
-            "type": "string"
-          },
-          "items": {
-            "type": "array",
+        },
+        "ProductCategory": {
+          "type": "object",
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "products": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Product"
+              }
+            },
+            "productCategoryId": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        },
+        "OrderItemRequest": {
+          "type": "object",
+          "properties": {
+            "product_id": {
+              "type": "string"
+            },
+            "qtd": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        },
+        "OrderSnackRequest": {
+          "type": "object",
+          "properties": {
+            "customer_id": {
+              "type": "string"
+            },
             "items": {
-              "$ref": "#/components/schemas/OrderItemRequest"
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/OrderItemRequest"
+              }
             }
           }
-        }
-      },
-      "PaymentNotification": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "$ref": "#/components/schemas/PaymentNotificationData"
+        },
+        "PaymentNotification": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "$ref": "#/components/schemas/PaymentNotificationData"
+            }
           }
-        }
-      },
-      "PaymentNotificationData": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
+        },
+        "PaymentNotificationData": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            }
           }
-        }
-      },
-      "CustomerRequest": {
-        "type": "object",
-        "properties": {
-          "email_address": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "cpf": {
-            "type": "string"
+        },
+        "CustomerRequest": {
+          "type": "object",
+          "properties": {
+            "email_address": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "cpf": {
+              "type": "string"
+            }
           }
         }
       }
     }
   }
-}
