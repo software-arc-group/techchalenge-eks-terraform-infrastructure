@@ -43,3 +43,7 @@ variable "min_size" {
 variable "lambda_name" {
   description = "Nome da lambda de autorização do api gateway "
 }
+
+variable "load_balancer_url" {
+  description = "Url do loadBalancer da aplicação"
+}

@@ -77,16 +77,10 @@
           }
         },
         "x-amazon-apigateway-integration": {
-          "passthroughBehavior": "WHEN_NO_MATCH",
-          "requestTemplates": {
-            "application/json": "{\"statusCode\": 200}"
-          },
-          "responses": {
-            "default": {
-              "statusCode": "200"
-            }
-          },
-          "type": "MOCK"
+          "type": "AWS",
+          "httpMethod": "POST",
+          "uri": "/lanchonete/order",
+          "payloadFormatVersion": "1.0"
         },
         "security": [
           {
