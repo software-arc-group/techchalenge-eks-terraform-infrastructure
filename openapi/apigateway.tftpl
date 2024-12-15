@@ -167,16 +167,11 @@
           }
         },
         "x-amazon-apigateway-integration": {
-          "passthroughBehavior": "WHEN_NO_MATCH",
-          "requestTemplates": {
-            "application/json": "{\"statusCode\": 200}"
-          },
-          "responses": {
-            "default": {
-              "statusCode": "200"
-            }
-          },
-          "type": "MOCK"
+          "type": "http_proxy",
+          "httpMethod": "GET",
+          "uri": "http://${server_url}:8080/lanchonete/order",
+          "payloadFormatVersion": "1.0",
+          "passthroughBehavior" : "when_no_match"
         },
         "security": [
           {
@@ -214,16 +209,11 @@
           }
         },
         "x-amazon-apigateway-integration": {
-          "passthroughBehavior": "WHEN_NO_MATCH",
-          "requestTemplates": {
-            "application/json": "{\"statusCode\": 200}"
-          },
-          "responses": {
-            "default": {
-              "statusCode": "200"
-            }
-          },
-          "type": "MOCK"
+          "type": "http_proxy",
+          "httpMethod": "PUT",
+          "uri": "http://${server_url}:8080/lanchonete/product",
+          "payloadFormatVersion": "1.0",
+          "passthroughBehavior" : "when_no_match"
         },
         "security": [
           {
@@ -285,16 +275,11 @@
           }
         },
         "x-amazon-apigateway-integration": {
-          "passthroughBehavior": "WHEN_NO_MATCH",
-          "requestTemplates": {
-            "application/json": "{\"statusCode\": 200}"
-          },
-          "responses": {
-            "default": {
-              "statusCode": "200"
-            }
-          },
-          "type": "MOCK"
+          "type": "http_proxy",
+          "httpMethod": "POST",
+          "uri": "http://${server_url}:8080/lanchonete/product",
+          "payloadFormatVersion": "1.0",
+          "passthroughBehavior" : "when_no_match"
         },
         "security": [
           {
@@ -358,16 +343,11 @@
           }
         },
         "x-amazon-apigateway-integration": {
-          "passthroughBehavior": "WHEN_NO_MATCH",
-          "requestTemplates": {
-            "application/json": "{\"statusCode\": 200}"
-          },
-          "responses": {
-            "default": {
-              "statusCode": "200"
-            }
-          },
-          "type": "MOCK"
+          "type": "http_proxy",
+          "httpMethod": "POST",
+          "uri": "http://${server_url}:8080/lanchonete/payment",
+          "payloadFormatVersion": "1.0",
+          "passthroughBehavior" : "when_no_match"
         },
         "security": [
           {
@@ -438,16 +418,11 @@
           }
         },
         "x-amazon-apigateway-integration": {
-          "passthroughBehavior": "WHEN_NO_MATCH",
-          "requestTemplates": {
-            "application/json": "{\"statusCode\": 200}"
-          },
-          "responses": {
-            "default": {
-              "statusCode": "200"
-            }
-          },
-          "type": "MOCK"
+          "type": "http_proxy",
+          "httpMethod": "GET",
+          "uri": "http://${server_url}:8080/lanchonete/customer",
+          "payloadFormatVersion": "1.0",
+          "passthroughBehavior" : "when_no_match"
         },
         "security": [
           {
@@ -509,16 +484,11 @@
           }
         },
         "x-amazon-apigateway-integration": {
-          "passthroughBehavior": "WHEN_NO_MATCH",
-          "requestTemplates": {
-            "application/json": "{\"statusCode\": 200}"
-          },
-          "responses": {
-            "default": {
-              "statusCode": "200"
-            }
-          },
-          "type": "MOCK"
+          "type": "http_proxy",
+          "httpMethod": "POST",
+          "uri": "http://${server_url}:8080/lanchonete/customer",
+          "payloadFormatVersion": "1.0",
+          "passthroughBehavior" : "when_no_match"
         },
         "security": [
           {
@@ -590,16 +560,11 @@
           }
         },
         "x-amazon-apigateway-integration": {
-          "passthroughBehavior": "WHEN_NO_MATCH",
-          "requestTemplates": {
-            "application/json": "{\"statusCode\": 200}"
-          },
-          "responses": {
-            "default": {
-              "statusCode": "200"
-            }
-          },
-          "type": "MOCK"
+          "type": "http_proxy",
+          "httpMethod": "GET",
+          "uri": "http://${server_url}:8080/lanchonete/category/{categoryId}",
+          "payloadFormatVersion": "1.0",
+          "passthroughBehavior" : "when_no_match"
         },
         "security": [
           {
@@ -671,17 +636,12 @@
           }
         },
         "x-amazon-apigateway-integration": {
-          "passthroughBehavior": "WHEN_NO_MATCH",
-          "requestTemplates": {
-            "application/json": "{\"statusCode\": 200}"
-          },
-          "responses": {
-            "default": {
-              "statusCode": "200"
-            }
-          },
-          "type": "MOCK"
-        },
+          "type": "http_proxy",
+          "httpMethod": "DELETE",
+          "uri": "http://${server_url}:8080/lanchonete/product/{productId}",
+          "payloadFormatVersion": "1.0",
+          "passthroughBehavior" : "when_no_match"
+        }
         "security": [
           {
             "cognito-pool": []
