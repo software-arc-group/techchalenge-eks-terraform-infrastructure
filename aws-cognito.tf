@@ -47,6 +47,6 @@ resource "aws_cognito_user_pool_client" "lanchonete" {
 }
 
 resource "aws_cognito_user_pool_domain" "domain_login_url" {
-  domain       = replace("${aws_cognito_user_pool.pool.id}", "_", "-")
+  domain       = lower(replace("${aws_cognito_user_pool.pool.id}", "_", "-"))
   user_pool_id = aws_cognito_user_pool.pool.id
 }
