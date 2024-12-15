@@ -1,5 +1,5 @@
 locals {
-  openapi_file = templatefile("./openapi/apigateway.tfpl", {
+  openapi_file = templatefile("./openapi/apigateway.tftpl", {
       server_url = var.load_balancer_url, 
       cognito_arn = aws_cognito_user_pool.pool.arn, 
       lambda_uri= data.aws_lambda_function.valida_credenciais.invoke_arn, 
